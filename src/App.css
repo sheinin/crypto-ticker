@@ -1,0 +1,109 @@
+
+.App {
+  text-align: center;
+  width: fit-content;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+.active {
+  color: #fff !important;
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+.display {
+  background-color: white;
+  margin: 20px;
+  padding: 20px;
+}
+.filter {
+  text-align: left;
+  font-size: larger;
+}
+.filter > div:first-child {
+  display: table;
+  margin-left:6px;
+}
+.filter > div:first-child > div {
+  display: table-cell;
+}
+.filter > div:first-child > div:first-child {
+  padding-right: 20px;
+}
+.filterMkt {
+  border-top: 1px solid gray;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  padding-top: 15px;
+  width: 100%;
+}
+.filterMkt > div {
+  display: inline-block;
+}
+.filterMkt > div:first-child {
+  width:50%;
+}
+.filterMkt > div:last-child {
+  text-align: right;
+  width:50%;
+}
+.filterMkt > div:last-child > div,
+.filterMkt > div:last-child > button {
+  margin-right: 15px;
+}
+.filterMkt > div:last-child > div:last-child,
+.filterMkt > div:last-child > button:last-child {
+  margin-right: 0px;
+}
+
+.filterTk {
+  margin-bottom: 10px;
+}
+.filterTk > div {
+  display: inline-block;
+  width: 50%;
+}
+.filterTk > div:last-child {
+  text-align: right;
+}
+.filterTk > div:last-child > div > div {
+  display: inline-block;
+}
+.filterTk > div:last-child > div > div:first-child {
+  margin-right: 20px;
+}
+.filterTk > div:last-child > div > div > label > input {
+  margin-right:10px;
+}
+.react-grid-HeaderCell {
+  background-color: rgb(217, 234, 240);
+}
+#root {
+  display:inline-block;
+  height: 100%;
+}
+#root > div {
+  display:table;
+  height: 100%;
+}
+#root > div > div {
+  display:table-cell;
+  vertical-align: middle;
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
