@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
-  "homepage" : "http://js2dx.com/binance",
+  "homepage": "http://js2dx.com/binance",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
@@ -13,7 +13,7 @@
     "bootstrap": "^4.5.0",
     "http": "0.0.1-security",
     "immutable": "^4.0.0-rc.12",
-    "jquery": "^1.9.1",
+    "jquery": "^3.5.0",
     "node-fetch": "^2.6.0",
     "react": "16.8.3",
     "react-bootstrap-toggle": "^2.3.2",
