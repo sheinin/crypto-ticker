@@ -6,7 +6,6 @@ import { Button, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, Dropd
 import './App.css';
 import './bootstrap.min.css';
 import "./bootstrap2-toggle.css";
-import "./react-table.css";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import Toggle from 'react-bootstrap-toggle';
 

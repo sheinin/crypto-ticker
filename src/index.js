@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import TickerTable from './App';
 import './index.css';
-import "./material-icons.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
