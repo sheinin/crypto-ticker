@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import TickerTable from './TickerTable.js'
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
-const urlWS = 'wss://stream.binance.com/stream?streams=!miniTicker@arr',
-      urlREST = 'https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products',
-      URLLocal = './static-data.json',
-      urlProxy = 'http://localhost:3001?' + encodeURIComponent(urlREST)
+const urlWS = 'wss://stream.binance.com/stream?streams=!miniTicker@arr'
 
 let client
 
@@ -43,14 +40,13 @@ export default class App extends Component {
 
     this._isMounted = true;
 
-    const url = window.location.hostname === "localhost" ? urlProxy : URLLocal
-
-    fetch(url, {
-
+    fetch("https://api.jsonbin.io/b/5ecca6afe91d1e45d11196d7", {
       method: "GET",
-      crossDomain:true
-
-    })
+      crossDomain: true,
+      headers: {
+        "secret-key":
+          "$2b$10$Zt4hT13r8cfu/SVnwSZ/c./Ir.DeH9vspbCG9S8C1X2Qibf8lUfBS"
+      }})
       .then(response => response.json())
       .then(data => {
 

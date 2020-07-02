@@ -42,14 +42,12 @@
     "ts-jest": "^26.0.0"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run client",
     "client": "react-scripts start",
-    "server": "node server.js",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001",
   "browserslist": [
     ">0.2%",
     "not ie <= 11",
