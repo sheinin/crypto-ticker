@@ -28,9 +28,6 @@ export default class TickerTable extends Component {
 
     }
 
-    this.sortColumn = ''
-    this.sortDirection = 'NONE'
-
   }
 
 
@@ -41,13 +38,22 @@ export default class TickerTable extends Component {
 
   }
 
-
-  componentWillReceiveProps(props) {
-  
-    !this.state.markets.length && this.setMarkets(props.markets)
-    this.setState({connected:props.connected})
-    this.getTickers(props.tickers)
+  static getDerivedStateFromProps(nextProps, prevState) {
     
+    return {tickers : nextProps.tickers, connected: nextProps.connected, markets: prevState.markets}
+
+  }
+ 
+  componentDidUpdate(prevProps, prevState) {
+
+    if (!this.state.markets.length && Object.keys(this.props.markets).length)
+
+      this.getMarkets(this.props.markets)
+
+    else if (this.state.connected !== this.props.connected)
+
+      this.setState({connected: this.props.connected})
+
   }
 
 
@@ -88,7 +94,7 @@ export default class TickerTable extends Component {
           }
         }
       ]
-    }, this.getTickers)
+    })
 
   }
 
@@ -140,29 +146,10 @@ export default class TickerTable extends Component {
   }
 
 
-  sortTickers = (sortColumn, sortDirection) => {
-
-    this.sortColumn = sortColumn ? sortColumn : this.sortColumn
-    this.sortDirection = sortDirection ? sortDirection : this.state.sortDirection
-
-    this.getTickers()
-
-  }
-
-  getTickers = tickers => {
-
-    const tk = tickers || this.state.tickers,
-          sd = this.sortDirection,
-          sc = this.sortColumn
-
-    this.setState({ tickers: sd !== "NONE" ? [...tk].sort((a, b) => sd === "ASC" ? a[sc] > b[sc] ? 1 : -1 : a[sc] < b[sc] ? 1 : -1) : tk })
-
-  }
-
-
-  setMarkets(mkt) {
+  getMarkets(mkt) {
 
     let markets = []
+
     for (let m in mkt)
 
       if (mkt[m].length === 1)
@@ -289,7 +276,7 @@ export default class TickerTable extends Component {
             rowsCount={this.state.tickers.length}
             onGridRowsUpdated={this.onGridRowsUpdated}
             enableCellSelect={true}
-            onGridSort={(sortColumn, sortDirection) => this.sortTickers(sortColumn, sortDirection)}
+            onGridSort={(sortColumn, sortDirection) => this.props.changeSort(sortColumn, sortDirection)}
           />
 
         </div>
@@ -308,6 +295,7 @@ TickerTable.propTypes = {
   changeSubMarket: PropTypes.func.isRequired,
   getTickers: PropTypes.func.isRequired,
   connectWS: PropTypes.func.isRequired,
-  changeFilter: PropTypes.func.isRequired
+  changeFilter: PropTypes.func.isRequired,
+  changeSort: PropTypes.func.isRequired
 
 }

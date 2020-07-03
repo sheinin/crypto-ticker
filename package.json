@@ -34,7 +34,6 @@
     "@babel/preset-react": "^7.0.0",
     "@testing-library/react": "^10.0.4",
     "babel-jest": "23.6.0",
-    "concurrently": "^5.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "23.6.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",

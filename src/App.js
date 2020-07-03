@@ -23,6 +23,8 @@ export default class App extends Component {
 
     }
 
+    this.sortColumn = ''
+    this.sortDirection = 'NONE'
     this.tickers = {}
 
   }
@@ -117,6 +119,15 @@ export default class App extends Component {
 
   }
 
+  changeSort = (sortColumn, sortDirection) => {
+
+    this.sortColumn = sortColumn ? sortColumn : this.sortColumn
+    this.sortDirection = sortDirection ? sortDirection : this.state.sortDirection
+
+    this.getTickers()
+
+  }
+
   connectWS() {
 
     this.setState({connected: !this.state.connected},
@@ -180,7 +191,10 @@ export default class App extends Component {
 
   getTickers = () => {
 
-    const tk = this.tickers
+    const tk = this.tickers,
+          sd = this.sortDirection,
+          sc = this.sortColumn
+
     let tickers = []
 
     for (let i in tk)
@@ -198,7 +212,7 @@ export default class App extends Component {
 
         })
 
-    this.setState({ tickers: tickers })
+    this.setState({ tickers: sd !== "NONE" ? [...tickers].sort((a, b) => sd === "ASC" ? a[sc] > b[sc] ? 1 : -1 : a[sc] < b[sc] ? 1 : -1) : tickers })
 
   }
 
@@ -215,6 +229,7 @@ export default class App extends Component {
         getTickers={this.getTickers}
         connectWS={this.connectWS.bind(this)}
         changeFilter={this.changeFilter.bind(this)}
+        changeSort={this.changeSort.bind(this)}
       />
 
     )
