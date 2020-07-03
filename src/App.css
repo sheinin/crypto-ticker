@@ -68,6 +68,20 @@
 .filterMkt > div:last-child > button:last-child {
   margin-right: 0px;
 }
+.filterMkt > div:first-child > div > div {
+  background-color: #ececec;
+  border-color: #dadada;
+  color: #444;
+  height: calc(1.5em + .75rem + 2px);
+  margin-left: 10px;
+  padding: .5rem;
+  width: 9rem;
+}
+.filterMkt > div:first-child > div > span:nth-child(2) {
+  max-width: 5px;
+  padding-left: .5rem;
+  padding-right: 0;
+}
 
 .filterTk {
   margin-bottom: 10px;

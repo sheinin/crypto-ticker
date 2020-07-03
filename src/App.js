@@ -34,7 +34,7 @@ export default class App extends Component {
   
   componentWillUnmount() {
 
-    this._isMounted = false;
+    this._isMounted = false
 
   }
 
@@ -52,19 +52,20 @@ export default class App extends Component {
       .then(response => response.json())
       .then(data => {
 
-        let tk = data.data,
-            markets = {},
+        const tk = data.data
+
+        let markets = {},
             tickers = {}
 
         for (let i = 0, ix = tk.length; i < ix; i += 1) {
 
-          let pm = tk[i].pm,
-              q = tk[i].q,
-              s = tk[i].s,
-              c = Number(tk[i].c),
-              o = Number(tk[i].o),
-              b = tk[i].b,
-              v = Number(tk[i].v)
+          const pm = tk[i].pm,
+                q = tk[i].q,
+                s = tk[i].s,
+                c = Number(tk[i].c),
+                o = Number(tk[i].o),
+                b = tk[i].b,
+                v = Number(tk[i].v)
 
           if (!(pm in markets))
 
@@ -122,7 +123,7 @@ export default class App extends Component {
   changeSort = (sortColumn, sortDirection) => {
 
     this.sortColumn = sortColumn ? sortColumn : this.sortColumn
-    this.sortDirection = sortDirection ? sortDirection : this.state.sortDirection
+    this.sortDirection = sortDirection ? sortDirection : this.sortDirection
 
     this.getTickers()
 
@@ -216,22 +217,21 @@ export default class App extends Component {
 
   }
 
-  render() {
-
-    return (
+  
+  render = () => (
 
       <TickerTable
         connected={this.state.connected}
         markets={this.state.markets}
         tickers={this.state.tickers}
-        changeMarket={this.changeMarket.bind(this)}
-        changeSubMarket={this.changeSubMarket.bind(this)}
-        getTickers={this.getTickers}
-        connectWS={this.connectWS.bind(this)}
         changeFilter={this.changeFilter.bind(this)}
+        changeMarket={this.changeMarket.bind(this)}
         changeSort={this.changeSort.bind(this)}
+        changeSubMarket={this.changeSubMarket.bind(this)}
+        connectWS={this.connectWS.bind(this)}
+        getTickers={this.getTickers}
       />
 
     )
-  }
+
 }

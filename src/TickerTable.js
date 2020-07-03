@@ -38,13 +38,17 @@ export default class TickerTable extends Component {
 
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    
-    return {tickers : nextProps.tickers, connected: nextProps.connected, markets: prevState.markets}
 
-  }
+  static getDerivedStateFromProps = (nextProps, prevState) => ({
+    
+    tickers : nextProps.tickers,
+    connected: nextProps.connected,
+    markets: prevState.markets
+  
+  })
  
-  componentDidUpdate(prevProps, prevState) {
+
+  componentDidUpdate() {
 
     if (!this.state.markets.length && Object.keys(this.props.markets).length)
 
@@ -57,7 +61,7 @@ export default class TickerTable extends Component {
   }
 
 
-  changeGridCol(e) {
+  changeGridCol = e => {
 
     let col = e.currentTarget.value
 
@@ -98,6 +102,7 @@ export default class TickerTable extends Component {
 
   }
 
+
   changeFilter = (e) => {
 
     const f = e.currentTarget.value.toUpperCase()
@@ -105,6 +110,7 @@ export default class TickerTable extends Component {
     this.setState({tickers:[]}, () => this.props.changeFilter(f))
   
   }
+
 
   changeMarket(e) {
 
@@ -203,7 +209,6 @@ export default class TickerTable extends Component {
     }
 
 
-
   render() {
     return (
       <div className="display">
@@ -231,13 +236,11 @@ export default class TickerTable extends Component {
                   <span className="input-group-append">
                       <div className="input-group-text border-0"><i className="fa fa-filter"></i></div>
                   </span>
-                  <span style={{maxWidth:5, paddingLeft:'.5rem', paddingRight:0}} className="form-control py-2 border-0">:</span>
+                  <span className="form-control py-2 border-0">:</span>
                   <div
-                    className=""
-                    style={{backgroundColor:'#ececec', color:'#444',borderColor:'#dadada',width:'9rem', height:'calc(1.5em + .75rem + 2px)',marginLeft:'10px',padding:'.5rem'}}
                     type="search" id="market-filter">
                       {this.state.mkt + (this.state.sub ? '/' + this.state.sub : '')}
-                    </div>
+                  </div>
                 </div>
               </div>
               <div>
@@ -259,10 +262,10 @@ export default class TickerTable extends Component {
             <div>
               <div>
                 <div>
-                  <label><input type="radio" name="gridCol" value="Change" onChange={this.changeGridCol.bind(this)}></input>Change</label>
+                  <label><input type="radio" name="gridCol" value="Change" onChange={this.changeGridCol}></input>Change</label>
                 </div>
                 <div>
-                <label><input type="radio" name="gridCol" value="Volume" onChange={this.changeGridCol.bind(this)} id="defaultCol"></input>Volume</label>
+                <label><input type="radio" name="gridCol" value="Volume" onChange={this.changeGridCol} id="defaultCol"></input>Volume</label>
                 </div>
               </div>
             </div>
