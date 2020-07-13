@@ -103,16 +103,14 @@ export default class TickerTable extends Component {
   }
 
 
-  changeFilter = (e) => {
+  changeFilter = e => {
+   
+    let filter = e.currentTarget.value.toUpperCase()
+    this.setState({tickers:[]}, () => this.props.changeFilter(filter))
 
-    const f = e.currentTarget.value.toUpperCase()
-
-    this.setState({tickers:[]}, () => this.props.changeFilter(f))
-  
   }
 
-
-  changeMarket(e) {
+  changeMarket = e => {
 
     let toggle = ''
 
@@ -143,7 +141,7 @@ export default class TickerTable extends Component {
   }
 
 
-  changeSubMarket(e) {
+  changeSubMarket = e => {
 
     const sub = e.currentTarget.id
 
@@ -152,7 +150,7 @@ export default class TickerTable extends Component {
   }
 
 
-  getMarkets(mkt) {
+  getMarkets = mkt => {
 
     let markets = []
 
@@ -167,7 +165,7 @@ export default class TickerTable extends Component {
             size="sm"
             id={m}
             className="btn-light"
-            onClick={this.changeMarket.bind(this)}
+            onClick={this.changeMarket}
           >
           {m}
         </Button>
@@ -182,7 +180,7 @@ export default class TickerTable extends Component {
               caret
               className="btn-light"
               id={m}
-              onClick={this.changeMarket.bind(this)}
+              onClick={this.changeMarket}
               size="sm">
               {m}
             </DropdownToggle>
@@ -192,7 +190,7 @@ export default class TickerTable extends Component {
                   <DropdownItem
                     id={pn}
                     key={pn}
-                    onClick={this.changeSubMarket.bind(this)}>
+                    onClick={this.changeSubMarket}>
                     {pn}
                   </DropdownItem>)
               }
@@ -256,7 +254,7 @@ export default class TickerTable extends Component {
                 <input
                   className="form-control py-2 border-left-0 border"
                   type="search"
-                  onChange={this.changeFilter.bind(this)}></input>
+                  onChange={this.changeFilter}></input>
               </div>
             </div>
             <div>

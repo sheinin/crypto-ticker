@@ -100,25 +100,11 @@ export default class App extends Component {
 
   }
 
+  changeMarket = mkt => this.setState({sub: '', mkt: mkt}, this.getTickers)
 
-  changeMarket(mkt) {
+  changeSubMarket = sub => this.setState({sub: sub}, this.getTickers)
 
-    this.setState({sub: '', mkt: mkt}, this.getTickers)
-
-  }
-
-
-  changeSubMarket(sub) {
-
-    this.setState({sub: sub}, this.getTickers)
-
-  }
-
-  changeFilter(filter) {
-
-    this.setState({filter: filter}, this.getTickers)
-
-  }
+  changeFilter = filter => this.setState({filter: filter}, this.getTickers)
 
   changeSort = (sortColumn, sortDirection) => {
 
@@ -129,7 +115,7 @@ export default class App extends Component {
 
   }
 
-  connectWS() {
+  connectWS = () => {
 
     this.setState({connected: !this.state.connected},
 
@@ -224,11 +210,11 @@ export default class App extends Component {
         connected={this.state.connected}
         markets={this.state.markets}
         tickers={this.state.tickers}
-        changeFilter={this.changeFilter.bind(this)}
-        changeMarket={this.changeMarket.bind(this)}
-        changeSort={this.changeSort.bind(this)}
-        changeSubMarket={this.changeSubMarket.bind(this)}
-        connectWS={this.connectWS.bind(this)}
+        changeFilter={this.changeFilter}
+        changeMarket={this.changeMarket}
+        changeSort={this.changeSort}
+        changeSubMarket={this.changeSubMarket}
+        connectWS={this.connectWS}
         getTickers={this.getTickers}
       />
 
