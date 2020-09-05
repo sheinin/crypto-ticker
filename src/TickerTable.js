@@ -73,14 +73,14 @@ export default class TickerTable extends Component {
           name: "Pair",
           editable: false,
           sortable: true,
-          formatter: (props)=>(<div style={{ textAlign:'left' }}>{props.value}</div>)
+          formatter: props => (<div style={{ textAlign:'left' }}>{props.value}</div>)
         },
         {
           key: "last_price",
           name: "Last Price",
           editable: false,
           sortable: true,
-          formatter: (props)=>(<div style={{ textAlign:'left' }}>{ ((+Number(props.value)).toFixed(6)).replace(/0+$/g,'').replace(/\.$/,'')  }</div>)
+          formatter: props => (<div style={{ textAlign:'left' }}>{((+Number(props.value)).toFixed(6)).replace(/0+$/g,'').replace(/\.$/,'')}</div>)
         },
         {
           key: col.toLowerCase(),
@@ -105,7 +105,7 @@ export default class TickerTable extends Component {
 
   changeFilter = e => {
    
-    let filter = e.currentTarget.value.toUpperCase()
+    const filter = e.currentTarget.value.toUpperCase()
     this.setState({tickers:[]}, () => this.props.changeFilter(filter))
 
   }
@@ -199,10 +199,9 @@ export default class TickerTable extends Component {
           
         )
 
-        this.setState(()=>({
+        this.setState({
           markets: markets
-        }),
-         ()=>document.getElementById(markets[0].props.id).click())
+        }, () => document.getElementById(markets[0].props.id).click())
         
     }
 

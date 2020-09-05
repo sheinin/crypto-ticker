@@ -32,15 +32,8 @@ export default class App extends Component {
 
   _isMounted = false
   
-  componentWillUnmount() {
-
-    this._isMounted = false
-
-  }
 
   componentDidMount() {
-
-    this._isMounted = true;
 
     fetch("https://api.jsonbin.io/b/5ecca6afe91d1e45d11196d7", {
       method: "GET",
@@ -67,16 +60,12 @@ export default class App extends Component {
                 b = tk[i].b,
                 v = Number(tk[i].v)
 
-          if (!(pm in markets))
+          markets[pm] = markets[pm] || []
 
-            markets[pm] = []
-
-          if (!~markets[pm].indexOf(q))
-
-            markets[pm].push(q)
+          !~markets[pm].indexOf(q) && markets[pm].push(q)
 
           tickers[s] = {
-            
+
             mkt: pm,
             sub: q,
             latest: c,
@@ -84,17 +73,13 @@ export default class App extends Component {
             stock: s,
             ticker: b,
             volume: v
-          
+
           }
 
         }
 
-        if (this._isMounted) {
-
-          this.tickers = tickers
-          this.setState({ markets: markets })
-
-        }
+        this.tickers = tickers
+        this.setState({ markets: markets })
 
       })
 
@@ -125,11 +110,7 @@ export default class App extends Component {
 
           client = new W3CWebSocket(urlWS)
 
-          client.onopen = () => {
-
-            console.log('WebSocket Client Connected')
-
-          }
+          client.onopen = () => console.log('WebSocket Client Connected')
 
           client.onerror = () => {
 
@@ -138,30 +119,24 @@ export default class App extends Component {
 
           }
 
-          client.onmessage = (message) => {
+          client.onmessage = message => {
 
             const data = JSON.parse(message.data).data
 
-            let tickers = {...this.tickers}
-            
-            data.map(data => {
+            data.forEach(data => {
 
               if (data.s in this.tickers)
 
-                tickers[data.s] = {
+                this.tickers[data.s] = {
 
-                  ...tickers[data.s],
+                  ...this.tickers[data.s],
                   latest: Number(data.c),
                   open: this.tickers[data.s].open,
                   volume: this.tickers[data.s].volume + Number(data.v)
 
                 }
 
-              return true
-
             })
-
-            this.tickers = {...tickers}
 
             this.getTickers()
 
