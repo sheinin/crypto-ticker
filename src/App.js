@@ -28,10 +28,7 @@ export default class App extends Component {
     this.tickers = {}
 
   }
-  
 
-  _isMounted = false
-  
 
   componentDidMount() {
 

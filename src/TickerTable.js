@@ -87,7 +87,7 @@ export default class TickerTable extends Component {
           name: col,
           editable: false,
           sortable: true,
-          formatter: (props) => {
+          formatter: props => {
 
             const val = Number(props.value)
 
@@ -167,9 +167,9 @@ export default class TickerTable extends Component {
             className="btn-light"
             onClick={this.changeMarket}
           >
-          {m}
-        </Button>
-        
+            {m}
+          </Button>
+
         )
 
       else
@@ -182,7 +182,7 @@ export default class TickerTable extends Component {
               id={m}
               onClick={this.changeMarket}
               size="sm">
-              {m}
+                {m}
             </DropdownToggle>
             <DropdownMenu>
               {
