@@ -1,8 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import TickerTable from './TickerTable.js'
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+import { w3cwebsocket as W3CWebSocket } from 'websocket'
 
 const urlWS = 'wss://stream.binance.com/stream?streams=!miniTicker@arr'
+const urlBin = 'https://api.jsonbin.io/b/5ecca6afe91d1e45d11196d7'
+const secretKey = '$2b$10$Zt4hT13r8cfu/SVnwSZ/c./Ir.DeH9vspbCG9S8C1X2Qibf8lUfBS'
+
 
 let client
 
@@ -27,25 +30,18 @@ export default class App extends Component {
     this.sortDirection = 'NONE'
     this.tickers = {}
 
-  }
-
-
-  componentDidMount() {
-
-    fetch("https://api.jsonbin.io/b/5ecca6afe91d1e45d11196d7", {
-      method: "GET",
+    fetch(urlBin, {
+      method: 'GET',
       crossDomain: true,
       headers: {
-        "secret-key":
-          "$2b$10$Zt4hT13r8cfu/SVnwSZ/c./Ir.DeH9vspbCG9S8C1X2Qibf8lUfBS"
+        'secret-key': secretKey
       }})
       .then(response => response.json())
       .then(data => {
 
         const tk = data.data
 
-        let markets = {},
-            tickers = {}
+        let markets = {}
 
         for (let i = 0, ix = tk.length; i < ix; i += 1) {
 
@@ -61,7 +57,7 @@ export default class App extends Component {
 
           !~markets[pm].indexOf(q) && markets[pm].push(q)
 
-          tickers[s] = {
+          this.tickers[s] = {
 
             mkt: pm,
             sub: q,
@@ -75,7 +71,6 @@ export default class App extends Component {
 
         }
 
-        this.tickers = tickers
         this.setState({ markets: markets })
 
       })
